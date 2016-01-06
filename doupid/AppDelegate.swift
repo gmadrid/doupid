@@ -12,7 +12,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   @IBOutlet weak var window: NSWindow!
-  @IBOutlet weak var tableView: NSTableView!
   @IBOutlet weak var aryCtrl: NSArrayController!
   dynamic var pathsArray = [String]()
 
@@ -27,14 +26,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   // MARK: - Path list manipulation
 
   @IBAction func clickAddPath(sender: NSResponder) {
-    pathsArray.append("Path: \(pathsArray.count)")
+    let panel = NSOpenPanel()
+    panel.canChooseFiles = false
+    panel.canChooseDirectories = true
+    panel.canCreateDirectories = false
+    panel.allowsMultipleSelection = true
+
+    panel.beginWithCompletionHandler(){ [unowned self, weak panel] i in
+      if let urls = panel?.URLs {
+        for url in urls {
+          self.pathsArray.append(url.path!)
+        }
+      }
+    }
   }
 
   @IBAction func clickRemovePath(sender: NSResponder) {
-    let row = tableView.selectedRow
-    if row >= 0 && row < pathsArray.count {
-      pathsArray.removeAtIndex(row)
-    }
+    aryCtrl.removeObjects(aryCtrl.selectedObjects)
   }
 
   // MARK: - Core Data stack
