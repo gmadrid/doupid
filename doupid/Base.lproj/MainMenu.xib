@@ -785,10 +785,12 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="clickRemovePath:" target="Voe-Tx-rLC" id="i07-VM-8Hz"/>
-                                            <binding destination="h14-yb-O7O" name="enabled" keyPath="selectedObjects" id="g6R-d3-77j">
+                                            <binding destination="h14-yb-O7O" name="enabled" keyPath="selection.@count" id="4Tx-Iu-0DG">
                                                 <dictionary key="options">
+                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                                    <string key="NSValueTransformerName">CountToBoolTransformer</string>
+                                                    <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                 </dictionary>
                                             </binding>
                                         </connections>

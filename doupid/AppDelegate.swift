@@ -16,16 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var aryCtrl: NSArrayController!
   dynamic var pathsArray = [String]()
 
-  override class func initialize() {
-    if NSValueTransformer.init(forName: "CountToBoolTransformer") == nil {
-      NSValueTransformer.setValueTransformer(CountToBoolTransformer(), forName: "CountToBoolTransformer")
-    }
-  }
-
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
   }
