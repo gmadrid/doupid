@@ -12,7 +12,19 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   @IBOutlet weak var window: NSWindow!
+  @IBOutlet weak var tableView: NSTableView!
+  @IBOutlet weak var aryCtrl: NSArrayController!
+  dynamic var pathsArray = [String]()
 
+  override class func initialize() {
+    if NSValueTransformer.init(forName: "CountToBoolTransformer") == nil {
+      NSValueTransformer.setValueTransformer(CountToBoolTransformer(), forName: "CountToBoolTransformer")
+    }
+  }
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
@@ -20,6 +32,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationWillTerminate(aNotification: NSNotification) {
     // Insert code here to tear down your application
+  }
+
+  // MARK: - Path list manipulation
+
+  @IBAction func clickAddPath(sender: NSResponder) {
+    pathsArray.append("Path: \(pathsArray.count)")
+  }
+
+  @IBAction func clickRemovePath(sender: NSResponder) {
+    let row = tableView.selectedRow
+    if row >= 0 && row < pathsArray.count {
+      pathsArray.removeAtIndex(row)
+    }
   }
 
   // MARK: - Core Data stack
