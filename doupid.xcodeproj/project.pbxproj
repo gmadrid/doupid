@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C78140861C3EC8D600385413 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78140851C3EC8D600385413 /* DataManager.swift */; };
+		C7A6BF701C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */; };
+		C7A6BF711C3EFE7000E8EAF0 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */; };
+		C7A6BF721C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6E1C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift */; };
+		C7A6BF731C3EFE7000E8EAF0 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6F1C3EFE7000E8EAF0 /* Image.swift */; };
 		C7FB46E41C3C839F0005A5B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB46E31C3C839F0005A5B7 /* AppDelegate.swift */; };
 		C7FB46E71C3C839F0005A5B7 /* doupid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C7FB46E51C3C839F0005A5B7 /* doupid.xcdatamodeld */; };
 		C7FB46E91C3C839F0005A5B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7FB46E81C3C839F0005A5B7 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		C78140851C3EC8D600385413 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Root+CoreDataProperties.swift"; path = "doupid/Root+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Root.swift; path = doupid/Root.swift; sourceTree = "<group>"; };
+		C7A6BF6E1C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataProperties.swift"; path = "doupid/Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C7A6BF6F1C3EFE7000E8EAF0 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = doupid/Image.swift; sourceTree = "<group>"; };
 		C7FB46E01C3C839F0005A5B7 /* doupid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = doupid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7FB46E31C3C839F0005A5B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7FB46E61C3C839F0005A5B7 /* doupid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = doupid.xcdatamodel; sourceTree = "<group>"; };
@@ -77,6 +85,10 @@
 		C7FB46D71C3C839F0005A5B7 = {
 			isa = PBXGroup;
 			children = (
+				C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */,
+				C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */,
+				C7A6BF6E1C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift */,
+				C7A6BF6F1C3EFE7000E8EAF0 /* Image.swift */,
 				C7FB46E21C3C839F0005A5B7 /* doupid */,
 				C7FB46F51C3C839F0005A5B7 /* doupidTests */,
 				C7FB47001C3C839F0005A5B7 /* doupidUITests */,
@@ -255,9 +267,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A6BF731C3EFE7000E8EAF0 /* Image.swift in Sources */,
 				C7FB46E71C3C839F0005A5B7 /* doupid.xcdatamodeld in Sources */,
 				C78140861C3EC8D600385413 /* DataManager.swift in Sources */,
 				C7FB46E41C3C839F0005A5B7 /* AppDelegate.swift in Sources */,
+				C7A6BF721C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift in Sources */,
+				C7A6BF701C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift in Sources */,
+				C7A6BF711C3EFE7000E8EAF0 /* Root.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

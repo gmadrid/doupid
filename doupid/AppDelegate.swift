@@ -35,8 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     panel.beginWithCompletionHandler(){ [unowned self, weak panel] i in
       if let urls = panel?.URLs {
         for url in urls {
-          let newRoot = self.aryCtrl.newObject() as! NSManagedObject
-          newRoot.setValue(url.path!, forKey: "path")
+          let newRoot = self.aryCtrl.newObject() as! Root
+          newRoot.path = url.path!
         }
       }
     }
