@@ -12,11 +12,11 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   @IBOutlet weak var window: NSWindow!
+  @IBOutlet weak var dataManager: DataManager!
   @IBOutlet weak var aryCtrl: NSArrayController!
-  dynamic var pathsArray = [String]()
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    // Insert code here to initialize your application
+    dataManager.managedObjectContext = self.managedObjectContext
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
@@ -35,7 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     panel.beginWithCompletionHandler(){ [unowned self, weak panel] i in
       if let urls = panel?.URLs {
         for url in urls {
-          self.pathsArray.append(url.path!)
+          let newRoot = self.aryCtrl.newObject() as! NSManagedObject
+          newRoot.setValue(url.path!, forKey: "path")
         }
       }
     }

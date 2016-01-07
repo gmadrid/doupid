@@ -17,13 +17,15 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="doupid" customModuleProvider="target">
             <connections>
                 <outlet property="aryCtrl" destination="h14-yb-O7O" id="qkb-Qy-oVv"/>
+                <outlet property="dataManager" destination="a36-Mq-m3F" id="I7X-fh-t9E"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <arrayController objectClassName="" selectsInsertedObjects="NO" avoidsEmptySelection="NO" id="h14-yb-O7O">
+        <customObject id="a36-Mq-m3F" customClass="DataManager" customModule="doupid" customModuleProvider="target"/>
+        <arrayController mode="entity" entityName="Root" editable="NO" automaticallyPreparesContent="YES" selectsInsertedObjects="NO" avoidsEmptySelection="NO" id="h14-yb-O7O">
             <connections>
-                <binding destination="Voe-Tx-rLC" name="contentArray" keyPath="pathsArray" id="SLg-3Z-3LL"/>
+                <binding destination="Voe-Tx-rLC" name="managedObjectContext" keyPath="managedObjectContext" id="Ptv-bc-UDN"/>
             </connections>
         </arrayController>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -723,10 +725,10 @@
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="3SL-xc-so1" name="value" keyPath="objectValue.path" id="aHg-vh-aAU"/>
+                                                                        </connections>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="3SL-xc-so1" name="value" keyPath="objectValue" id="hgJ-FV-FkQ"/>
-                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
@@ -740,8 +742,8 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="h14-yb-O7O" name="content" keyPath="arrangedObjects" id="K7D-3c-58d"/>
-                                                <binding destination="h14-yb-O7O" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="K7D-3c-58d" id="JSJ-N2-p0g"/>
+                                                <binding destination="h14-yb-O7O" name="content" keyPath="arrangedObjects" id="FzW-tO-1UG"/>
+                                                <binding destination="h14-yb-O7O" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="FzW-tO-1UG" id="h4L-24-68F"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
