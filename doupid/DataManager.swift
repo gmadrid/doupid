@@ -10,6 +10,19 @@ import Cocoa
 
 class DataManager : NSObject {
 
+  let pathQueue = NSOperationQueue()
+
+  func processPath(path: String) {
+    let asyncManagedContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    asyncManagedContext.parentContext = self.managedObjectContext
+
+    pathQueue.addOperationWithBlock() { () in
+      asyncManagedContext.performBlockAndWait() {
+        
+      }
+    }
+  }
+
   // MARK: - Core Data stack
 
   lazy var managedObjectContext: NSManagedObjectContext = {
