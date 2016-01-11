@@ -27,8 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     }
 
-    FSEventStreamCreate(nil, cb, &fsContext, ["/Users/gmadrid/Dropbox/Images"], UInt64(kFSEventStreamEventIdSinceNow), 10,
-      UInt32(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes))
+    FSEventStreamCreate(nil, cb, &fsContext, ["/Users/gmadrid/Dropbox/Images"], FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 10,
+      FSEventStreamCreateFlags(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes))
 
     debugPrint("NOBOOM")
   }
