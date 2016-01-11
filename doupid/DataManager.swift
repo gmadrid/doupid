@@ -37,9 +37,13 @@ class DataManager : NSObject {
     func performDataOperation(context: NSManagedObjectContext) {
       do {
         try GetFilesUnderPath(path) { filePath, attrs in
+          guard PathRefersToImageFile(filePath) else {
+            // Ignore non-image files
+            return
+          }
+
           let image = DataManager.FindImageWithPath(filePath, context: context) ??
             DataManager.MakeImage(filePath, attributes: attrs, context:context)
-          print(image)
         }
         try context.save()
       } catch {

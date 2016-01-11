@@ -6,6 +6,7 @@
 //  Copyright © 2015 George Madrid. All rights reserved.
 //
 
+import CoreServices
 import Foundation
 
 private enum Errors : ErrorType {
@@ -25,6 +26,30 @@ public func GetFileInfoUnderPath(path: String) throws -> [FileInfo] {
     }
     return FileInfo(name: path, size: fileSize.unsignedLongLongValue)
   }
+}
+
+public func PathRefersToImageFile(path: String) -> Bool {
+  let ext = (path as NSString).pathExtension
+  guard !ext.isEmpty else {
+    return false
+  }
+
+  let maybeUtis = UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, ext, nil)
+  guard let cfutis = maybeUtis else {
+    return false
+  }
+
+  let utis = cfutis.takeRetainedValue() as [AnyObject]
+  for uti in utis {
+    guard let utiString = uti as? String else {
+      continue
+    }
+
+    if UTTypeConformsTo(utiString, kUTTypeImage) {
+      return true
+    }
+  }
+  return false
 }
 
 public func GetFilesUnderPath<T>(path: String, _ cb: (String, [String : AnyObject]) throws -> T) throws -> [T] {
