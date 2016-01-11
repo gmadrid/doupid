@@ -16,6 +16,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var aryCtrl: NSArrayController!
   @IBOutlet weak var managedObjectContext: NSManagedObjectContext!
 
+  func applicationWillFinishLaunching(notification: NSNotification) {
+    debugPrint("Launching")
+
+    var fsContext = FSEventStreamContext()
+
+    let cb : FSEventStreamCallback = {
+      (a : ConstFSEventStreamRef, b: UnsafeMutablePointer<Void>, c: Int,
+        d: UnsafeMutablePointer<Void>, e: UnsafePointer<FSEventStreamEventFlags>, f : UnsafePointer<FSEventStreamEventId>) in
+
+    }
+
+    FSEventStreamCreate(nil, cb, &fsContext, ["/Users/gmadrid/Dropbox/Images"], UInt64(kFSEventStreamEventIdSinceNow), 10,
+      UInt32(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes))
+
+    debugPrint("NOBOOM")
+  }
+
   func applicationWillTerminate(aNotification: NSNotification) {
     // Insert code here to tear down your application
   }
