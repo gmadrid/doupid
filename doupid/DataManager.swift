@@ -57,6 +57,7 @@ class DataManager : NSObject {
       } catch {
         print("Exception while walking path: \(path), \(error)")
       }
+      print("Done scanning")
     }
   }
 
