@@ -27,6 +27,8 @@ class DataManager : NSObject {
 
   // MARK: Background operations
 
+  // Path scan will add an entry for every image file under path to the data store.
+  // It will also clear the so-called "dynamic" data for any file whose size or mod date has changed.
   private class PathScan : DataOperation {
     let path: String
 
@@ -44,6 +46,12 @@ class DataManager : NSObject {
 
           let image = DataManager.FindImageWithPath(filePath, context: context) ??
             DataManager.MakeImage(filePath, attributes: attrs, context:context)
+
+          if image.isObviouslyDifferentFromAttrs(attrs) {
+            image.clearDynamicFields()
+            image.size = NSNumber(unsignedLongLong: (attrs as NSDictionary).fileSize())
+            image.modDate = (attrs as NSDictionary).fileModificationDate()
+          }
         }
         try context.save()
       } catch {
@@ -55,15 +63,20 @@ class DataManager : NSObject {
   // MARK: -
 
   private class func FindImageWithPath(path: String, context: NSManagedObjectContext) -> Image? {
-    return nil
+    let fetch = NSFetchRequest(entityName: "Image")
+    fetch.predicate = NSPredicate(format: "path ==[c] %@", path)
+
+    let results = try? context.executeFetchRequest(fetch)
+    if results == nil || results?.count == 0 {
+      return nil
+    }
+
+    return results?.first as! Image?
   }
 
   private class func MakeImage(path: String, attributes: [String:AnyObject], context: NSManagedObjectContext) -> Image {
     let image = NSEntityDescription.insertNewObjectForEntityForName("Image", inManagedObjectContext: context) as! Image
-    image.path = path
-    image.filename = (path as NSString).lastPathComponent
-    image.size = NSNumber(unsignedLongLong: (attributes as NSDictionary).fileSize())
-    image.modDate = (attributes as NSDictionary).fileModificationDate()
+    image.setRequiredPathFields(path);
     return image
   }
 
@@ -78,52 +91,6 @@ class DataManager : NSObject {
   func processPath(path: String) {
     performOp(PathScan(path: path));
   }
-
-  /*
-
-  Want to stack operations in here. Operations are:
-  1) Scan a path.
-  2) Hash scan.
-  3) Haar scan.
-  
-  Only add to operation queue from main queue. 
-  Only perform operations on background queue.
-  (You may want to revisit this at some point, since file ops are input bound and haar is processor bound.)
-  
-  This means that all background tasks have to inform the main thread when they are done so that
-  another operation can be enqueued. (This is only necessary since we want to control the order that
-  tasks are enqueued.
-*/
-
-
-
-//  func processPath(path: String) {
-//    let asyncManagedContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-//    asyncManagedContext.parentContext = self.managedObjectContext
-//
-//    pathQueue.addOperationWithBlock() { [unowned self] () in
-//      try! GetFilesUnderPath(path) { filePath, attrs in
-//        asyncManagedContext.performBlockAndWait() {
-//          print(filePath)
-//          let image = self.FindImageByPath(filePath, managedContext: asyncManagedContext) ?? self.MakeImage(filePath, managedContext: asyncManagedContext)
-//          print(image)  // TODO: remove this.
-//          try! asyncManagedContext.save()
-//        }
-//      }
-//    }
-//
-//  }
-//
-//  func FindImageByPath(path: String, managedContext: NSManagedObjectContext) -> Image? {
-//    return nil
-//  }
-//
-//  func MakeImage(path: String, managedContext: NSManagedObjectContext) -> Image {
-//    let image = NSEntityDescription.insertNewObjectForEntityForName("Image", inManagedObjectContext: managedContext) as! Image
-//    image.path = path
-//    image.filename = path
-//    return image
-//  }
 
   // MARK: - Core Data stack
 
