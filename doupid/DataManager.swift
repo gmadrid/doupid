@@ -8,13 +8,14 @@
 
 import Cocoa
 
-class DataManager : NSObject {
-  // All tasks occur on this queue.
-  //  let pathQueue = NSOperationQueue()
+// A protocol for background operations.
+private protocol DataOperation {
+  func performDataOperation(context: NSManagedObjectContext)
+}
 
-  // All tasks are lined up here for later processing background context.
-  // (Only the main queue should be manipulating this array.)
-  private let operationsForBackgroundProcessing = [DataOperation]()
+class DataManager : NSObject {
+
+  // MARK: Background context
 
   // All background operations will take place in this context.
   private lazy var backgroundContext : NSManagedObjectContext = {
@@ -22,13 +23,60 @@ class DataManager : NSObject {
     context.parentContext = self.managedObjectContext
     return context
   }()
-  
-  private enum DataOperation {
-    case PathScan(path : String)
+
+
+  // MARK: Background operations
+
+  private class PathScan : DataOperation {
+    let path: String
+
+    init(path: String) {
+      self.path = path
+    }
+
+    func performDataOperation(context: NSManagedObjectContext) {
+      do {
+        try GetFilesUnderPath(path) { filePath, attrs in
+          let image = DataManager.FindImageWithPath(filePath, context: context) ??
+            DataManager.MakeImage(filePath, attributes: attrs, context:context)
+          print(image)
+        }
+        try context.save()
+      } catch {
+        print("Exception while walking path: \(path), \(error)")
+      }
+    }
+  }
+
+  // MARK: -
+
+  private class func FindImageWithPath(path: String, context: NSManagedObjectContext) -> Image? {
+    return nil
+  }
+
+  private class func MakeImage(path: String, attributes: [String:AnyObject], context: NSManagedObjectContext) -> Image {
+    let image = NSEntityDescription.insertNewObjectForEntityForName("Image", inManagedObjectContext: context) as! Image
+    image.path = path
+    image.filename = (path as NSString).lastPathComponent
+    image.size = NSNumber(unsignedLongLong: (attributes as NSDictionary).fileSize())
+    image.modDate = (attributes as NSDictionary).fileModificationDate()
+    return image
+  }
+
+  // MARK: -
+
+  private func performOp(op: DataOperation) {
+    backgroundContext.performBlock {
+      op.performDataOperation(self.backgroundContext)
+    }
+  }
+
+  func processPath(path: String) {
+    performOp(PathScan(path: path));
   }
 
   /*
-  
+
   Want to stack operations in here. Operations are:
   1) Scan a path.
   2) Hash scan.
@@ -85,7 +133,9 @@ class DataManager : NSObject {
 
   private lazy var applicationDocumentsDirectory: NSURL = {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.me.doupid" in the user's Application Support directory.
-    let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+    let dir = NSSearchPathDirectory.ApplicationSupportDirectory
+
+    let urls = NSFileManager.defaultManager().URLsForDirectory(dir, inDomains: .UserDomainMask)
     let appSupportURL = urls[urls.count - 1]
     return appSupportURL.URLByAppendingPathComponent("com.me.doupid")
   }()

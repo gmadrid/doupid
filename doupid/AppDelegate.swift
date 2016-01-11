@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for url in urls {
           let newRoot = self.aryCtrl.newObject() as! Root
           newRoot.path = url.path!
-          //          self.dataManager.processPath(newRoot.path!)
+          self.dataManager.processPath(newRoot.path!)
         }
       }
     }
