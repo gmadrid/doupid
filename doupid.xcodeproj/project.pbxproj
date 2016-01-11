@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C748204E1C3F3B8F00D420B4 /* FileWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C748204C1C3F3B8F00D420B4 /* FileWalk.swift */; };
+		C748204F1C3F3B8F00D420B4 /* MultiDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = C748204D1C3F3B8F00D420B4 /* MultiDict.swift */; };
 		C78140861C3EC8D600385413 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78140851C3EC8D600385413 /* DataManager.swift */; };
 		C7A6BF701C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */; };
 		C7A6BF711C3EFE7000E8EAF0 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C748204C1C3F3B8F00D420B4 /* FileWalk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWalk.swift; sourceTree = "<group>"; };
+		C748204D1C3F3B8F00D420B4 /* MultiDict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiDict.swift; sourceTree = "<group>"; };
 		C78140851C3EC8D600385413 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Root+CoreDataProperties.swift"; path = "doupid/Root+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Root.swift; path = doupid/Root.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 		C7FB46E21C3C839F0005A5B7 /* doupid */ = {
 			isa = PBXGroup;
 			children = (
+				C748204C1C3F3B8F00D420B4 /* FileWalk.swift */,
+				C748204D1C3F3B8F00D420B4 /* MultiDict.swift */,
 				C7FB46E31C3C839F0005A5B7 /* AppDelegate.swift */,
 				C7FB46E81C3C839F0005A5B7 /* Assets.xcassets */,
 				C7FB46EA1C3C839F0005A5B7 /* MainMenu.xib */,
@@ -267,10 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C748204E1C3F3B8F00D420B4 /* FileWalk.swift in Sources */,
 				C7A6BF731C3EFE7000E8EAF0 /* Image.swift in Sources */,
 				C7FB46E71C3C839F0005A5B7 /* doupid.xcdatamodeld in Sources */,
 				C78140861C3EC8D600385413 /* DataManager.swift in Sources */,
 				C7FB46E41C3C839F0005A5B7 /* AppDelegate.swift in Sources */,
+				C748204F1C3F3B8F00D420B4 /* MultiDict.swift in Sources */,
 				C7A6BF721C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift in Sources */,
 				C7A6BF701C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift in Sources */,
 				C7A6BF711C3EFE7000E8EAF0 /* Root.swift in Sources */,

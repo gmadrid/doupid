@@ -9,19 +9,69 @@
 import Cocoa
 
 class DataManager : NSObject {
+  // All tasks occur on this queue.
+  //  let pathQueue = NSOperationQueue()
 
-  let pathQueue = NSOperationQueue()
+  // All tasks are lined up here for later processing background context.
+  // (Only the main queue should be manipulating this array.)
+  private let operationsForBackgroundProcessing = [DataOperation]()
 
-  func processPath(path: String) {
-    let asyncManagedContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-    asyncManagedContext.parentContext = self.managedObjectContext
-
-    pathQueue.addOperationWithBlock() { () in
-      asyncManagedContext.performBlockAndWait() {
-        
-      }
-    }
+  // All background operations will take place in this context.
+  private lazy var backgroundContext : NSManagedObjectContext = {
+    let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    context.parentContext = self.managedObjectContext
+    return context
+  }()
+  
+  private enum DataOperation {
+    case PathScan(path : String)
   }
+
+  /*
+  
+  Want to stack operations in here. Operations are:
+  1) Scan a path.
+  2) Hash scan.
+  3) Haar scan.
+  
+  Only add to operation queue from main queue. 
+  Only perform operations on background queue.
+  (You may want to revisit this at some point, since file ops are input bound and haar is processor bound.)
+  
+  This means that all background tasks have to inform the main thread when they are done so that
+  another operation can be enqueued. (This is only necessary since we want to control the order that
+  tasks are enqueued.
+*/
+
+
+
+//  func processPath(path: String) {
+//    let asyncManagedContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+//    asyncManagedContext.parentContext = self.managedObjectContext
+//
+//    pathQueue.addOperationWithBlock() { [unowned self] () in
+//      try! GetFilesUnderPath(path) { filePath, attrs in
+//        asyncManagedContext.performBlockAndWait() {
+//          print(filePath)
+//          let image = self.FindImageByPath(filePath, managedContext: asyncManagedContext) ?? self.MakeImage(filePath, managedContext: asyncManagedContext)
+//          print(image)  // TODO: remove this.
+//          try! asyncManagedContext.save()
+//        }
+//      }
+//    }
+//
+//  }
+//
+//  func FindImageByPath(path: String, managedContext: NSManagedObjectContext) -> Image? {
+//    return nil
+//  }
+//
+//  func MakeImage(path: String, managedContext: NSManagedObjectContext) -> Image {
+//    let image = NSEntityDescription.insertNewObjectForEntityForName("Image", inManagedObjectContext: managedContext) as! Image
+//    image.path = path
+//    image.filename = path
+//    return image
+//  }
 
   // MARK: - Core Data stack
 
