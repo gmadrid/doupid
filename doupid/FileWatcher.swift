@@ -13,15 +13,7 @@ protocol FileWatcherCallback {
 }
 
 protocol FileWatcherEventIdProvider {
-
-}
-
-protocol HasPath {
-  var path: String { get }
-}
-
-extension String : HasPath {
-  var path: String { return self }
+  var eventId: FSEventStreamEventId { get set }
 }
 
 class FileWatcher {
@@ -38,17 +30,17 @@ class FileWatcher {
     stopWatching()
   }
 
-  func watchPaths(paths: [HasPath]) {
+  func watchPaths(paths: [String]) {
     for path in paths {
-      watchedDirectories.insert(path.path);
+      watchedDirectories.insert(path);
     }
     stopWatching()
     startWatching()
   }
 
-  func stopWatchingPaths(paths: [HasPath]) {
+  func stopWatchingPaths(paths: [String]) {
     for path in paths {
-      if let index = watchedDirectories.indexOf(path.path) {
+      if let index = watchedDirectories.indexOf(path) {
         watchedDirectories.removeAtIndex(index)
       }
     }

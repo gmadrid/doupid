@@ -15,13 +15,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, FileWatcherEventIdProvider {
   @IBOutlet weak var dataManager: DataManager!
   @IBOutlet weak var aryCtrl: NSArrayController!
   var fileWatcher: FileWatcher!
+  var eventId: FSEventStreamEventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow)
 
   func applicationWillFinishLaunching(notification: NSNotification) {
-    fileWatcher = FileWatcher(eventIdProvider: self)
+    loadRootsAndStartFileWatcher()
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
     fileWatcher.clearWatchedPaths()
+  }
+
+  private func loadRootsAndStartFileWatcher() {
+    let maybeLastEventId = NSUserDefaults.standardUserDefaults().objectForKey("lasteventid") as? NSNumber
+    let needFullScan: Bool
+    if maybeLastEventId == nil {
+      eventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow)
+      needFullScan = true
+    } else {
+      eventId = maybeLastEventId!.unsignedLongLongValue
+      needFullScan = false
+    }
+
+    fileWatcher = FileWatcher(eventIdProvider: self)
+
+    let fetch = NSFetchRequest(entityName: "Root")
+    let roots = try! dataManager.managedObjectContext.executeFetchRequest(fetch) as! [Root]
+
+    let swiftRoots = roots.filter{ $0.path != nil }.map{ $0.path! } 
+
+    fileWatcher.watchPaths(swiftRoots)
   }
 
   // MARK: - Path list manipulation
