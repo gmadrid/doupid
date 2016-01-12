@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C728B7851C45489200D1B479 /* FileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B7841C45489200D1B479 /* FileWatcher.swift */; };
 		C748204E1C3F3B8F00D420B4 /* FileWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C748204C1C3F3B8F00D420B4 /* FileWalk.swift */; };
 		C748204F1C3F3B8F00D420B4 /* MultiDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = C748204D1C3F3B8F00D420B4 /* MultiDict.swift */; };
 		C78140861C3EC8D600385413 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78140851C3EC8D600385413 /* DataManager.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C728B7841C45489200D1B479 /* FileWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWatcher.swift; sourceTree = "<group>"; };
 		C748204C1C3F3B8F00D420B4 /* FileWalk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWalk.swift; sourceTree = "<group>"; };
 		C748204D1C3F3B8F00D420B4 /* MultiDict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiDict.swift; sourceTree = "<group>"; };
 		C78140851C3EC8D600385413 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				C7FB46ED1C3C839F0005A5B7 /* Info.plist */,
 				C7FB46E51C3C839F0005A5B7 /* doupid.xcdatamodeld */,
 				C78140851C3EC8D600385413 /* DataManager.swift */,
+				C728B7841C45489200D1B479 /* FileWatcher.swift */,
 			);
 			path = doupid;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				C748204E1C3F3B8F00D420B4 /* FileWalk.swift in Sources */,
 				C7A6BF731C3EFE7000E8EAF0 /* Image.swift in Sources */,
+				C728B7851C45489200D1B479 /* FileWatcher.swift in Sources */,
 				C7FB46E71C3C839F0005A5B7 /* doupid.xcdatamodeld in Sources */,
 				C78140861C3EC8D600385413 /* DataManager.swift in Sources */,
 				C7FB46E41C3C839F0005A5B7 /* AppDelegate.swift in Sources */,

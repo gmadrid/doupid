@@ -14,29 +14,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var window: NSWindow!
   @IBOutlet weak var dataManager: DataManager!
   @IBOutlet weak var aryCtrl: NSArrayController!
+  var fileWatcher = FileWatcher()
 
   func applicationWillFinishLaunching(notification: NSNotification) {
-    debugPrint("Launching")
-
-    var fsContext = FSEventStreamContext()
-
-    let cb : FSEventStreamCallback = {
-      (streamRef : ConstFSEventStreamRef, clientCallbackInfo: UnsafeMutablePointer<Void>, numEvents: Int,
-        eventPaths: UnsafeMutablePointer<Void>, eventFlags: UnsafePointer<FSEventStreamEventFlags>, eventIds: UnsafePointer<FSEventStreamEventId>) in
-      print("WE GOT ONE: \(numEvents)")
-      debugPrint(unsafeBitCast(eventPaths, NSArray.self) as! [String])
-    }
-
-    let streamRef = FSEventStreamCreate(nil, cb, &fsContext, ["/tmp/tester"], FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 10,
-      FSEventStreamCreateFlags(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes))
-    FSEventStreamScheduleWithRunLoop(streamRef, CFRunLoopGetMain(), kCFRunLoopDefaultMode)
-    FSEventStreamStart(streamRef)
-
-    debugPrint("NOBOOM")
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
-    // Insert code here to tear down your application
+    fileWatcher.clearWatchedPaths()
   }
 
   // MARK: - Path list manipulation
