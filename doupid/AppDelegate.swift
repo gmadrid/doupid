@@ -21,13 +21,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var fsContext = FSEventStreamContext()
 
     let cb : FSEventStreamCallback = {
-      (a : ConstFSEventStreamRef, b: UnsafeMutablePointer<Void>, c: Int,
-        d: UnsafeMutablePointer<Void>, e: UnsafePointer<FSEventStreamEventFlags>, f : UnsafePointer<FSEventStreamEventId>) in
-
+      (streamRef : ConstFSEventStreamRef, clientCallbackInfo: UnsafeMutablePointer<Void>, numEvents: Int,
+        eventPaths: UnsafeMutablePointer<Void>, eventFlags: UnsafePointer<FSEventStreamEventFlags>, eventIds: UnsafePointer<FSEventStreamEventId>) in
+      print("WE GOT ONE: \(numEvents)")
+      debugPrint(unsafeBitCast(eventPaths, NSArray.self) as! [String])
     }
 
-    FSEventStreamCreate(nil, cb, &fsContext, ["/Users/gmadrid/Dropbox/Images"], FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 10,
+    let streamRef = FSEventStreamCreate(nil, cb, &fsContext, ["/tmp/tester"], FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 10,
       FSEventStreamCreateFlags(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes))
+    FSEventStreamScheduleWithRunLoop(streamRef, CFRunLoopGetMain(), kCFRunLoopDefaultMode)
+    FSEventStreamStart(streamRef)
 
     debugPrint("NOBOOM")
   }
