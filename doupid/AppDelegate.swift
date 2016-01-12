@@ -14,7 +14,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var window: NSWindow!
   @IBOutlet weak var dataManager: DataManager!
   @IBOutlet weak var aryCtrl: NSArrayController!
-  @IBOutlet weak var managedObjectContext: NSManagedObjectContext!
 
   func applicationWillFinishLaunching(notification: NSNotification) {
     debugPrint("Launching")

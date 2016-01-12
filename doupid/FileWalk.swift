@@ -52,7 +52,7 @@ public func PathRefersToImageFile(path: String) -> Bool {
   return false
 }
 
-public func GetFilesUnderPath<T>(path: String, _ cb: (String, [String : AnyObject]) throws -> T) throws -> [T] {
+public func GetFilesUnderPath<T>(path: String, recursive: Bool = true, _ cb: (String, [String : AnyObject]) throws -> T) throws -> [T] {
   var result = [T]()
 
   let mgr = NSFileManager.defaultManager()
@@ -66,6 +66,10 @@ public func GetFilesUnderPath<T>(path: String, _ cb: (String, [String : AnyObjec
     }
 
     let attrs = e.fileAttributes!
+    if !recursive && (attrs as NSDictionary).fileType() == NSFileTypeDirectory {
+      e.skipDescendants()
+      continue
+    }
     if attrs[NSFileType] as! String != NSFileTypeRegular {
       continue
     }
