@@ -9,14 +9,15 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, FileWatcherEventIdProvider {
 
   @IBOutlet weak var window: NSWindow!
   @IBOutlet weak var dataManager: DataManager!
   @IBOutlet weak var aryCtrl: NSArrayController!
-  var fileWatcher = FileWatcher()
+  var fileWatcher: FileWatcher!
 
   func applicationWillFinishLaunching(notification: NSNotification) {
+    fileWatcher = FileWatcher(eventIdProvider: self)
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {

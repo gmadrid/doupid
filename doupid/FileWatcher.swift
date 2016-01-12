@@ -12,7 +12,7 @@ protocol FileWatcherCallback {
 
 }
 
-protocol FileWatcherPersister {
+protocol FileWatcherEventIdProvider {
 
 }
 
@@ -28,6 +28,11 @@ class FileWatcher {
   private var streamRef: FSEventStreamRef = nil
   private lazy var watchedDirectories = Set<String>()
   private lazy var callbacks = [FileWatcherCallback]()
+  private let eventIdProvider: FileWatcherEventIdProvider
+
+  init(eventIdProvider: FileWatcherEventIdProvider) {
+    self.eventIdProvider = eventIdProvider
+  }
 
   deinit {
     stopWatching()
@@ -61,8 +66,6 @@ class FileWatcher {
       return
     }
 
-    var fsContext = FSEventStreamContext()
-
     let cb : FSEventStreamCallback = {
       (streamRef : ConstFSEventStreamRef, clientCallbackInfo: UnsafeMutablePointer<Void>, numEvents: Int,
       eventPaths: UnsafeMutablePointer<Void>, eventFlags: UnsafePointer<FSEventStreamEventFlags>, eventIds: UnsafePointer<FSEventStreamEventId>) in
@@ -72,11 +75,16 @@ class FileWatcher {
       debugPrint(unsafeBitCast(eventPaths, NSArray.self) as! [String])
     }
 
-    let streamRef = FSEventStreamCreate(nil, cb, &fsContext, Array<String>(watchedDirectories), FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 10,
-      FSEventStreamCreateFlags(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes))
+    var fsContext = FSEventStreamContext()
+    let dirs = Array<String>(watchedDirectories)
+    let eventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow)
+    let flags = FSEventStreamCreateFlags(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes)
+    let streamRef = FSEventStreamCreate(nil, cb, &fsContext, dirs, eventId, 10, flags)
+
     FSEventStreamScheduleWithRunLoop(streamRef, CFRunLoopGetMain(), kCFRunLoopDefaultMode)
-    if !FSEventStreamStart(streamRef) {
-      // Wow, we need to fail hard, here, I guess, for now.
+    guard FSEventStreamStart(streamRef) else {
+      // TODO: Wow, we need to fail hard, here, I guess, for now.
+      return
     }
     self.streamRef = streamRef
   }
