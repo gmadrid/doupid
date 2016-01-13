@@ -37,11 +37,19 @@ class DataManager : NSObject {
     }
 
     func performDataOperation(context: NSManagedObjectContext) {
+      print("PathScan: \(path)")
+      var i = 0
+      var j = 0
       do {
         try GetFilesUnderPath(path) { filePath, attrs in
+          i++
           guard PathRefersToImageFile(filePath) else {
             // Ignore non-image files
             return
+          }
+          j++
+          if (i % 100 == 0) {
+            print("Scanning \(i)/\(j) files")
           }
 
           let image = DataManager.FindImageWithPath(filePath, context: context) ??
@@ -65,7 +73,7 @@ class DataManager : NSObject {
 
   private class func FindImageWithPath(path: String, context: NSManagedObjectContext) -> Image? {
     let fetch = NSFetchRequest(entityName: "Image")
-    fetch.predicate = NSPredicate(format: "path ==[c] %@", path)
+    fetch.predicate = NSPredicate(format: "path == %@", path)
 
     let results = try? context.executeFetchRequest(fetch)
     if results == nil || results?.count == 0 {
