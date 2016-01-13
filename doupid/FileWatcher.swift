@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FileWatcherCallback {
-
+  func onEvent(path: String, recursive: Bool)
 }
 
 protocol FileWatcherEventIdProvider {
@@ -20,7 +20,7 @@ class FileWatcher {
   private var streamRef: FSEventStreamRef = nil
   private lazy var watchedDirectories = Set<String>()
   private lazy var callbacks = [FileWatcherCallback]()
-  private let eventIdProvider: FileWatcherEventIdProvider
+  private var eventIdProvider: FileWatcherEventIdProvider
 
   init(eventIdProvider: FileWatcherEventIdProvider) {
     self.eventIdProvider = eventIdProvider
@@ -53,25 +53,34 @@ class FileWatcher {
     stopWatching()
   }
 
+  private let eventCallback: FSEventStreamCallback = {
+    (streamRef : ConstFSEventStreamRef, clientCallbackInfo: UnsafeMutablePointer<Void>, numEvents: Int,
+    unsafeEventPaths: UnsafeMutablePointer<Void>, eventFlags: UnsafePointer<FSEventStreamEventFlags>, eventIds: UnsafePointer<FSEventStreamEventId>) in
+
+    let fileWatcher: FileWatcher = unsafeBitCast(clientCallbackInfo, FileWatcher.self)
+
+    let eventPaths = unsafeBitCast(unsafeEventPaths, NSArray.self) as! [String]
+    var highestEventId: FSEventStreamEventId = 0
+
+    for i in 0..<numEvents {
+      debugPrint(eventPaths[i], eventFlags[i], eventIds[i])
+      highestEventId = max(highestEventId, eventIds[i])
+    }
+    debugPrint(highestEventId)
+    fileWatcher.eventIdProvider.eventId = highestEventId
+  }
+
   private func startWatching() {
     guard watchedDirectories.count > 0 else {
       return
     }
 
-    let cb : FSEventStreamCallback = {
-      (streamRef : ConstFSEventStreamRef, clientCallbackInfo: UnsafeMutablePointer<Void>, numEvents: Int,
-      eventPaths: UnsafeMutablePointer<Void>, eventFlags: UnsafePointer<FSEventStreamEventFlags>, eventIds: UnsafePointer<FSEventStreamEventId>) in
-      for var i = 0; i < numEvents; ++i {
-        debugPrint(eventIds[i])
-      }
-      debugPrint(unsafeBitCast(eventPaths, NSArray.self) as! [String])
-    }
-
     var fsContext = FSEventStreamContext()
+    fsContext.info = UnsafeMutablePointer<Void>(unsafeAddressOf(self))
     let dirs = Array<String>(watchedDirectories)
     let eventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow)
     let flags = FSEventStreamCreateFlags(kFSEventStreamCreateFlagIgnoreSelf | kFSEventStreamCreateFlagUseCFTypes)
-    let streamRef = FSEventStreamCreate(nil, cb, &fsContext, dirs, eventId, 10, flags)
+    let streamRef = FSEventStreamCreate(nil, eventCallback, &fsContext, dirs, eventId, 10, flags)
 
     FSEventStreamScheduleWithRunLoop(streamRef, CFRunLoopGetMain(), kCFRunLoopDefaultMode)
     guard FSEventStreamStart(streamRef) else {

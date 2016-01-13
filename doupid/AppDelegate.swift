@@ -15,7 +15,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, FileWatcherEventIdProvider {
   @IBOutlet weak var dataManager: DataManager!
   @IBOutlet weak var aryCtrl: NSArrayController!
   var fileWatcher: FileWatcher!
-  var eventId: FSEventStreamEventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow)
+  var eventId: FSEventStreamEventId {
+    get {
+      if let lastEventId = NSUserDefaults.standardUserDefaults().objectForKey("lasteventid") as? NSNumber {
+        return lastEventId.unsignedLongLongValue
+      } else {
+        return FSEventStreamEventId(kFSEventStreamEventIdSinceNow)
+      }
+    }
+    set {
+      let number = NSNumber(unsignedLongLong: newValue)
+      NSUserDefaults.standardUserDefaults().setObject(number, forKey: "lasteventid")
+    }
+  }
 
   func applicationWillFinishLaunching(notification: NSNotification) {
     loadRootsAndStartFileWatcher()
