@@ -681,28 +681,28 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1577"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="745"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGy-uc-z3y">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGy-uc-z3y" userLabel="Left side">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="360"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibm-Iq-lvE">
-                                <rect key="frame" x="0.0" y="19" width="480" height="341"/>
+                                <rect key="frame" x="0.0" y="19" width="240" height="341"/>
                                 <clipView key="contentView" id="5eV-xj-IgL">
-                                    <rect key="frame" x="1" y="0.0" width="478" height="340"/>
+                                    <rect key="frame" x="1" y="0.0" width="238" height="340"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" autosaveColumns="NO" rowSizeStyle="automatic" headerView="yb6-co-hQe" viewBased="YES" id="RYC-SA-O8K">
-                                            <rect key="frame" x="0.0" y="0.0" width="478" height="317"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="238" height="317"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="475" minWidth="40" maxWidth="1000" id="g5b-Gi-sJZ">
+                                                <tableColumn width="235" minWidth="40" maxWidth="1000" id="g5b-Gi-sJZ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Paths">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -716,10 +716,10 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="3SL-xc-so1">
-                                                            <rect key="frame" x="1" y="1" width="475" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="235" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wlr-l9-HQZ">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wlr-l9-HQZ">
                                                                     <rect key="frame" x="-2" y="0.0" width="479" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Table View Cell" id="ruO-3O-SBJ">
                                                                         <font key="font" metaFont="system"/>
@@ -752,7 +752,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="W01-6e-jWg">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="1" y="324" width="36" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="veq-AW-UIg">
@@ -760,7 +760,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="yb6-co-hQe">
-                                    <rect key="frame" x="0.0" y="0.0" width="478" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="238" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -821,12 +821,34 @@
                             <real value="3.4028234663852886e+38"/>
                         </customSpacing>
                     </stackView>
+                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ur-Rf-cCa" userLabel="Right side">
+                        <rect key="frame" x="240" y="0.0" width="240" height="360"/>
+                        <subviews>
+                            <progressIndicator wantsLayer="YES" maxValue="1" displayedWhenStopped="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="eaH-AA-fNY">
+                                <rect key="frame" x="0.0" y="-1" width="240" height="362"/>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="eaH-AA-fNY" firstAttribute="leading" secondItem="1ur-Rf-cCa" secondAttribute="leading" id="GqY-nQ-8BU"/>
+                            <constraint firstAttribute="trailing" secondItem="eaH-AA-fNY" secondAttribute="trailing" id="q58-rS-8Td"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1ur-Rf-cCa" secondAttribute="trailing" id="2M6-4z-dHP"/>
+                    <constraint firstItem="1ur-Rf-cCa" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="2WS-is-VLo"/>
                     <constraint firstItem="VGy-uc-z3y" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="F3R-DA-4I7"/>
+                    <constraint firstAttribute="bottom" secondItem="1ur-Rf-cCa" secondAttribute="bottom" id="XSC-uq-VUb"/>
                     <constraint firstItem="VGy-uc-z3y" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="ch7-1k-5GX"/>
-                    <constraint firstAttribute="trailing" secondItem="VGy-uc-z3y" secondAttribute="trailing" id="fIX-bd-zG5"/>
+                    <constraint firstItem="1ur-Rf-cCa" firstAttribute="leading" secondItem="VGy-uc-z3y" secondAttribute="trailing" id="cwi-5k-37z"/>
                     <constraint firstAttribute="bottom" secondItem="VGy-uc-z3y" secondAttribute="bottom" id="fro-lK-vnL"/>
+                    <constraint firstItem="1ur-Rf-cCa" firstAttribute="width" secondItem="VGy-uc-z3y" secondAttribute="width" id="n5i-Bg-UWd"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="299" y="290"/>
