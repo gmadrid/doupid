@@ -443,7 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = doupid/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/doupid/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.doupid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,7 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = doupid/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/doupid/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.doupid;
 				PRODUCT_NAME = "$(TARGET_NAME)";

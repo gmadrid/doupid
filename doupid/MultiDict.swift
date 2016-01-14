@@ -39,11 +39,9 @@ struct MultiDict<Key : Hashable, Value> {
     }
   }
 
-  // TODO: why is this call to filter necessary?
+  // TODO: why is this call to map necessary?
   var values : [[Value]] {
-    return dict.values.filter {_ in 
-      return true
-    }
+    return dict.values.map { $0 }
   }
 
   // TODO: why can't I return just [Value] here?
