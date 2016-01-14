@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C728B7851C45489200D1B479 /* FileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B7841C45489200D1B479 /* FileWatcher.swift */; };
+		C728B78B1C47F67F00D1B479 /* doupid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C728B7891C47F67F00D1B479 /* doupid.xcdatamodeld */; };
 		C748204E1C3F3B8F00D420B4 /* FileWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C748204C1C3F3B8F00D420B4 /* FileWalk.swift */; };
 		C748204F1C3F3B8F00D420B4 /* MultiDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = C748204D1C3F3B8F00D420B4 /* MultiDict.swift */; };
 		C78140861C3EC8D600385413 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78140851C3EC8D600385413 /* DataManager.swift */; };
@@ -16,7 +17,6 @@
 		C7A6BF721C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6E1C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift */; };
 		C7A6BF731C3EFE7000E8EAF0 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BF6F1C3EFE7000E8EAF0 /* Image.swift */; };
 		C7FB46E41C3C839F0005A5B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB46E31C3C839F0005A5B7 /* AppDelegate.swift */; };
-		C7FB46E71C3C839F0005A5B7 /* doupid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C7FB46E51C3C839F0005A5B7 /* doupid.xcdatamodeld */; };
 		C7FB46E91C3C839F0005A5B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7FB46E81C3C839F0005A5B7 /* Assets.xcassets */; };
 		C7FB46EC1C3C839F0005A5B7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7FB46EA1C3C839F0005A5B7 /* MainMenu.xib */; };
 		C7FB46F71C3C839F0005A5B7 /* doupidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB46F61C3C839F0005A5B7 /* doupidTests.swift */; };
@@ -42,19 +42,19 @@
 
 /* Begin PBXFileReference section */
 		C728B7841C45489200D1B479 /* FileWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWatcher.swift; sourceTree = "<group>"; };
+		C728B78A1C47F67F00D1B479 /* doupid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = doupid.xcdatamodel; sourceTree = "<group>"; };
 		C748204C1C3F3B8F00D420B4 /* FileWalk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWalk.swift; sourceTree = "<group>"; };
 		C748204D1C3F3B8F00D420B4 /* MultiDict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiDict.swift; sourceTree = "<group>"; };
 		C78140851C3EC8D600385413 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Root+CoreDataProperties.swift"; path = "doupid/Root+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Root.swift; path = doupid/Root.swift; sourceTree = "<group>"; };
-		C7A6BF6E1C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataProperties.swift"; path = "doupid/Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C7A6BF6F1C3EFE7000E8EAF0 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = doupid/Image.swift; sourceTree = "<group>"; };
+		C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Root+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		C7A6BF6E1C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C7A6BF6F1C3EFE7000E8EAF0 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		C7FB46E01C3C839F0005A5B7 /* doupid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = doupid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7FB46E31C3C839F0005A5B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C7FB46E61C3C839F0005A5B7 /* doupid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = doupid.xcdatamodel; sourceTree = "<group>"; };
-		C7FB46E81C3C839F0005A5B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C7FB46E81C3C839F0005A5B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = resources/Assets.xcassets; sourceTree = "<group>"; };
 		C7FB46EB1C3C839F0005A5B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		C7FB46ED1C3C839F0005A5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7FB46ED1C3C839F0005A5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = resources/Info.plist; sourceTree = "<group>"; };
 		C7FB46F21C3C839F0005A5B7 /* doupidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = doupidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7FB46F61C3C839F0005A5B7 /* doupidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doupidTests.swift; sourceTree = "<group>"; };
 		C7FB46F81C3C839F0005A5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,13 +88,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C7FB46D71C3C839F0005A5B7 = {
+		C728B7861C47F53900D1B479 /* Core Data objects */ = {
 			isa = PBXGroup;
 			children = (
+				C728B7891C47F67F00D1B479 /* doupid.xcdatamodeld */,
 				C7A6BF6C1C3EFE7000E8EAF0 /* Root+CoreDataProperties.swift */,
 				C7A6BF6D1C3EFE7000E8EAF0 /* Root.swift */,
 				C7A6BF6E1C3EFE7000E8EAF0 /* Image+CoreDataProperties.swift */,
 				C7A6BF6F1C3EFE7000E8EAF0 /* Image.swift */,
+			);
+			name = "Core Data objects";
+			path = coredata;
+			sourceTree = "<group>";
+		};
+		C728B7871C47F5F700D1B479 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C7FB46E31C3C839F0005A5B7 /* AppDelegate.swift */,
+			);
+			name = App;
+			path = app;
+			sourceTree = "<group>";
+		};
+		C728B7881C47F62000D1B479 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C7FB46E81C3C839F0005A5B7 /* Assets.xcassets */,
+				C7FB46EA1C3C839F0005A5B7 /* MainMenu.xib */,
+				C7FB46ED1C3C839F0005A5B7 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C7FB46D71C3C839F0005A5B7 = {
+			isa = PBXGroup;
+			children = (
 				C7FB46E21C3C839F0005A5B7 /* doupid */,
 				C7FB46F51C3C839F0005A5B7 /* doupidTests */,
 				C7FB47001C3C839F0005A5B7 /* doupidUITests */,
@@ -115,15 +143,13 @@
 		C7FB46E21C3C839F0005A5B7 /* doupid */ = {
 			isa = PBXGroup;
 			children = (
+				C728B7871C47F5F700D1B479 /* App */,
+				C728B7861C47F53900D1B479 /* Core Data objects */,
 				C748204C1C3F3B8F00D420B4 /* FileWalk.swift */,
 				C748204D1C3F3B8F00D420B4 /* MultiDict.swift */,
-				C7FB46E31C3C839F0005A5B7 /* AppDelegate.swift */,
-				C7FB46E81C3C839F0005A5B7 /* Assets.xcassets */,
-				C7FB46EA1C3C839F0005A5B7 /* MainMenu.xib */,
-				C7FB46ED1C3C839F0005A5B7 /* Info.plist */,
-				C7FB46E51C3C839F0005A5B7 /* doupid.xcdatamodeld */,
 				C78140851C3EC8D600385413 /* DataManager.swift */,
 				C728B7841C45489200D1B479 /* FileWatcher.swift */,
+				C728B7881C47F62000D1B479 /* Resources */,
 			);
 			path = doupid;
 			sourceTree = "<group>";
@@ -279,7 +305,7 @@
 				C748204E1C3F3B8F00D420B4 /* FileWalk.swift in Sources */,
 				C7A6BF731C3EFE7000E8EAF0 /* Image.swift in Sources */,
 				C728B7851C45489200D1B479 /* FileWatcher.swift in Sources */,
-				C7FB46E71C3C839F0005A5B7 /* doupid.xcdatamodeld in Sources */,
+				C728B78B1C47F67F00D1B479 /* doupid.xcdatamodeld in Sources */,
 				C78140861C3EC8D600385413 /* DataManager.swift in Sources */,
 				C7FB46E41C3C839F0005A5B7 /* AppDelegate.swift in Sources */,
 				C748204F1C3F3B8F00D420B4 /* MultiDict.swift in Sources */,
@@ -417,7 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = doupid/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/doupid/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.doupid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,7 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = doupid/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/doupid/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.doupid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -530,12 +556,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C7FB46E51C3C839F0005A5B7 /* doupid.xcdatamodeld */ = {
+		C728B7891C47F67F00D1B479 /* doupid.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C7FB46E61C3C839F0005A5B7 /* doupid.xcdatamodel */,
+				C728B78A1C47F67F00D1B479 /* doupid.xcdatamodel */,
 			);
-			currentVersion = C7FB46E61C3C839F0005A5B7 /* doupid.xcdatamodel */;
+			currentVersion = C728B78A1C47F67F00D1B479 /* doupid.xcdatamodel */;
 			path = doupid.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

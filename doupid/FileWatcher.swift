@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FileWatcherCallback {
-  func onEvent(path: String, recursive: Bool)
+  func directoryChanged(path: String, recursive: Bool)
 }
 
 protocol FileWatcherEventIdProvider {
@@ -64,6 +64,9 @@ class FileWatcher {
 
     for i in 0..<numEvents {
       debugPrint(eventPaths[i], eventFlags[i], eventIds[i])
+      for cb in fileWatcher.callbacks {
+        cb.directoryChanged(eventPaths[i], recursive: false);
+      }
       highestEventId = max(highestEventId, eventIds[i])
     }
     debugPrint(highestEventId)
